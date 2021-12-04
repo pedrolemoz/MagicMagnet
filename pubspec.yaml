@@ -3,7 +3,7 @@ description: Get magnet links from internet without any effort!
 
 publish_to: 'none'
 
-version: 2.0.2
+version: 2.1.0
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -48,10 +48,7 @@ dependencies:
   mobx: any
   flutter_mobx: any
   bloc: 6.1.3
-
-  # Admob
-  firebase_admob: ^0.11.0+1
-
+  
 dev_dependencies:
   # Code generation for MobX
   build_runner:

@@ -52,4 +52,4 @@ As mentioned, this app uses the [Flutter framework](https://flutter.dev), which 
 
 ## Can I compile this app from source?
 
-Well, you can't. Only the user interface is open source, because I'm planning to publish this app in Google Play. This app requires my own engine in order to work properly. If you are really interested in working in this project, contact me for more details.
+Well, you can't. Only the user interface is open source. This app requires my own engine in order to work properly. If you are really interested in working in this project, contact me for more details.

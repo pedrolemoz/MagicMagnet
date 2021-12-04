@@ -1,12 +1,9 @@
 import 'package:asuka/asuka.dart' as asuka;
 import 'package:clipboard/clipboard.dart';
-import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:magic_magnet_engine/magic_magnet_engine.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../core/utils/app_config/app_config.dart';
-import '../../../../core/utils/user_interface/admob.dart';
 import '../../../../core/utils/user_interface/disable_splash.dart';
 import 'floating_snack_bar.dart';
 import 'rounded_button.dart';
@@ -18,32 +15,6 @@ class DetailModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void _showCopyInteresticialAd() {
-      // ignore: unused_local_variable
-      final copyInteresticial = InterstitialAd(
-        adUnitId: AdmobCodes.copyInteresticialID,
-        targetingInfo: const MobileAdTargetingInfo(),
-        listener: (MobileAdEvent event) {
-          debugPrint('InterstitialAd event is $event');
-        },
-      )
-        ..load()
-        ..show();
-    }
-
-    Future<void> _showOpenInteresticialAd() async {
-      final InterstitialAd openInteresticial = InterstitialAd(
-        adUnitId: AdmobCodes.openInteresticialID,
-        targetingInfo: const MobileAdTargetingInfo(),
-        listener: (MobileAdEvent event) {
-          debugPrint('InterstitialAd event is $event');
-        },
-      );
-
-      await openInteresticial.load();
-      await openInteresticial.show();
-    }
-
     return Container(
       height: MediaQuery.of(context).size.height * 0.75,
       decoration: BoxDecoration(
@@ -60,12 +31,18 @@ class DetailModal extends StatelessWidget {
           children: [
             Text(
               'Torrent name',
-              style: Theme.of(context).textTheme.headline6.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6
+                  .copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 6),
             Text(
               magnetLink.torrentName,
-              style: Theme.of(context).textTheme.subtitle1.copyWith(fontWeight: FontWeight.w600),
+              style: Theme.of(context)
+                  .textTheme
+                  .subtitle1
+                  .copyWith(fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 25),
             Column(
@@ -74,24 +51,40 @@ class DetailModal extends StatelessWidget {
               children: [
                 Text(
                   'Avaliability',
-                  style: Theme.of(context).textTheme.headline6.copyWith(fontWeight: FontWeight.bold),
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline6
+                      .copyWith(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  magnetLink?.magnetLinkInfo?.seeders != null ? '${magnetLink.magnetLinkInfo.seeders} seeders' : 'Fetching seeders data...',
-                  style: Theme.of(context).textTheme.subtitle1.copyWith(fontWeight: FontWeight.w600),
+                  magnetLink?.magnetLinkInfo?.seeders != null
+                      ? '${magnetLink.magnetLinkInfo.seeders} seeders'
+                      : 'Fetching seeders data...',
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle1
+                      .copyWith(fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  magnetLink?.magnetLinkInfo?.leechers != null ? '${magnetLink.magnetLinkInfo.leechers} leechers' : 'Fetching leechers data...',
-                  style: Theme.of(context).textTheme.subtitle1.copyWith(fontWeight: FontWeight.w600),
+                  magnetLink?.magnetLinkInfo?.leechers != null
+                      ? '${magnetLink.magnetLinkInfo.leechers} leechers'
+                      : 'Fetching leechers data...',
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle1
+                      .copyWith(fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   magnetLink?.magnetLinkInfo?.health != null
                       ? '${magnetLink.magnetLinkInfo.health}% healthy (ratio between seeders and leechers)'
                       : 'Calculating torrent health...',
-                  style: Theme.of(context).textTheme.subtitle1.copyWith(fontWeight: FontWeight.w600),
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle1
+                      .copyWith(fontWeight: FontWeight.w600),
                 ),
               ],
             ),
@@ -102,12 +95,18 @@ class DetailModal extends StatelessWidget {
               children: [
                 Text(
                   'Original source',
-                  style: Theme.of(context).textTheme.headline6.copyWith(fontWeight: FontWeight.bold),
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline6
+                      .copyWith(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 6),
                 Text(
                   magnetLink.originalSource,
-                  style: Theme.of(context).textTheme.subtitle1.copyWith(fontWeight: FontWeight.w600),
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle1
+                      .copyWith(fontWeight: FontWeight.w600),
                 ),
               ],
             ),
@@ -118,7 +117,10 @@ class DetailModal extends StatelessWidget {
               children: [
                 Text(
                   'Avaliable actions',
-                  style: Theme.of(context).textTheme.headline6.copyWith(fontWeight: FontWeight.bold),
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline6
+                      .copyWith(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 16),
                 Column(
@@ -129,10 +131,6 @@ class DetailModal extends StatelessWidget {
                       color: Theme.of(context).accentColor,
                       padding: const EdgeInsets.all(16),
                       onTap: () async {
-                        if (AppConfig.of(context).isFree) {
-                          _showCopyInteresticialAd();
-                        }
-
                         await FlutterClipboard.copy(
                           magnetLink.magnetLink,
                         ).then(
@@ -142,7 +140,8 @@ class DetailModal extends StatelessWidget {
                               padding: EdgeInsets.zero,
                               elevation: 0,
                               content: FloatingSnackBar(
-                                text: 'Magnet link sucessfully copied to clipboard',
+                                text:
+                                    'Magnet link sucessfully copied to clipboard',
                               ),
                             ),
                           ),
@@ -164,13 +163,7 @@ class DetailModal extends StatelessWidget {
                       padding: const EdgeInsets.all(16),
                       onTap: () async {
                         try {
-                          if (AppConfig.of(context).isFree) {
-                            _showOpenInteresticialAd();
-                          }
-
-                          await launch(
-                            magnetLink.magnetLink,
-                          );
+                          await launch(magnetLink.magnetLink);
                         } catch (e) {
                           asuka.showSnackBar(
                             const SnackBar(
@@ -178,7 +171,8 @@ class DetailModal extends StatelessWidget {
                               padding: EdgeInsets.zero,
                               elevation: 0,
                               content: FloatingSnackBar(
-                                text: "You don't have any compatible app to open this link",
+                                text:
+                                    "You don't have any compatible app to open this link",
                               ),
                             ),
                           );
@@ -210,7 +204,8 @@ class DetailModal extends StatelessWidget {
                               padding: EdgeInsets.zero,
                               elevation: 0,
                               content: FloatingSnackBar(
-                                text: "You don't have any compatible app to open this link",
+                                text:
+                                    "You don't have any compatible app to open this link",
                               ),
                             ),
                           );

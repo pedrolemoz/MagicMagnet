@@ -2,16 +2,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "MagicMagnet free",
+            "name": "MagicMagnet",
             "request": "launch",
             "type": "dart",
-            "program": "lib/main_free.dart",
-        },
-        {
-            "name": "MagicMagnet paid",
-            "request": "launch",
-            "type": "dart",
-            "program": "lib/main_paid.dart",
+            "program": "lib/main.dart",
         }
     ]
 }

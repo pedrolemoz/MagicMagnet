@@ -1,10 +1,7 @@
-import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:unicons/unicons.dart';
 
-import '../../../../core/utils/app_config/app_config.dart';
-import '../../../../core/utils/user_interface/admob.dart';
 import '../widgets/circular_button.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,50 +9,10 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-bool isAdLoaded = false;
-
 class _HomePageState extends State<HomePage> {
   final textController = TextEditingController();
 
-  BannerAd homeBanner;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (AppConfig.of(context).isFree) {
-      homeBanner = BannerAd(
-        adUnitId: AdmobCodes.homeBannerID,
-        size: AdSize.banner,
-        targetingInfo: const MobileAdTargetingInfo(),
-        listener: (MobileAdEvent event) {
-          debugPrint('BannerAd event is $event');
-        },
-      );
-
-      homeBanner
-        ..load()
-        ..show(anchorType: AnchorType.bottom);
-
-      isAdLoaded = true;
-    }
-  }
-
-  @override
-  void dispose() {
-    if (isAdLoaded) {
-      homeBanner..dispose();
-      isAdLoaded = false;
-    }
-
-    super.dispose();
-  }
-
   Future<void> search() async {
-    if (isAdLoaded) {
-      homeBanner..dispose();
-      isAdLoaded = false;
-    }
-
     if (textController.text.isNotEmpty || textController.text != '') {
       Modular.navigator.pushNamed('/search/${textController.text}');
     }
