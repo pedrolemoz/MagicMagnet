@@ -1,0 +1,63 @@
+analyzer:
+  errors:
+    missing_required_param: warning
+    missing_return: warning
+
+linter:
+  rules:
+    - require_trailing_commas
+    - prefer_relative_imports
+    - always_declare_return_types
+    - always_require_non_null_named_parameters
+    - annotate_overrides
+    - avoid_empty_else
+    - avoid_slow_async_io
+    - avoid_types_as_parameter_names
+    - avoid_unused_constructor_parameters
+    - await_only_futures
+    - avoid_returning_null
+    - avoid_unnecessary_containers
+    - camel_case_types
+    - camel_case_extensions
+    - cancel_subscriptions
+    - directives_ordering
+    - empty_constructor_bodies
+    - file_names
+    - library_names
+    - library_prefixes
+    - list_remove_unrelated_type
+    - no_duplicate_case_values
+    - non_constant_identifier_names
+    - prefer_asserts_in_initializer_lists
+    - prefer_collection_literals
+    - prefer_conditional_assignment
+    - prefer_const_constructors
+    - prefer_const_declarations
+    - prefer_contains
+    - prefer_equal_for_default_values
+    - prefer_final_fields
+    - prefer_foreach
+    - prefer_initializing_formals
+    - prefer_if_elements_to_conditional_expressions
+    - prefer_interpolation_to_compose_strings
+    - prefer_is_empty
+    - prefer_is_not_empty
+    - prefer_iterable_whereType
+    - prefer_single_quotes
+    - prefer_void_to_null
+    - recursive_getters
+    - sized_box_for_whitespace
+    - unnecessary_brace_in_string_interps
+    - unnecessary_const
+    - unnecessary_new
+    - unnecessary_null_aware_assignments
+    - unnecessary_null_in_if_null_operators
+    - unnecessary_overrides
+    - unnecessary_parenthesis
+    - unnecessary_statements
+    - unnecessary_this
+    - unnecessary_raw_strings
+    - valid_regexps
+    - package_names
+    - use_rethrow_when_possible
+    - avoid_void_async

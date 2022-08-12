@@ -1,0 +1,38 @@
+name: magic_magnet
+description: Magic Magnet
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.6 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_modular: ^5.0.3
+  unicons: ^2.1.0 
+  magic_magnet_engine:
+    path: ../MagicMagnetEngine
+  animations: ^2.0.3
+  bloc: ^8.1.0
+  flutter_bloc: ^8.0.1
+ 
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+  - family: SourceSansPro
+    fonts:
+    - asset: assets/fonts/SourceSansPro-Regular.ttf
+      weight: 400
+    - asset: assets/fonts/SourceSansPro-SemiBold.ttf
+      weight: 600
+    - asset: assets/fonts/SourceSansPro-Bold.ttf
+      weight: 700
+
+  assets:
+    - assets/images/
