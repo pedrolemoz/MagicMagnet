@@ -3,40 +3,45 @@ import 'package:unicons/unicons.dart';
 
 class SearchBox extends StatefulWidget {
   final Function(String) onSubmitted;
+  final TextEditingController controller;
+  final EdgeInsets? padding;
 
-  const SearchBox({required this.onSubmitted});
+  const SearchBox({
+    required this.onSubmitted,
+    required this.controller,
+    this.padding,
+  });
 
   @override
   State<SearchBox> createState() => _SearchBoxState();
 }
 
 class _SearchBoxState extends State<SearchBox> {
-  late final TextEditingController controller;
   bool enableCursor = false;
 
   @override
   void initState() {
-    controller = TextEditingController()
-      ..addListener(
-        () => setState(() => enableCursor = controller.text.isNotEmpty),
-      );
+    widget.controller.addListener(
+      () => setState(() => enableCursor = widget.controller.text.isNotEmpty),
+    );
     super.initState();
   }
 
   @override
   void dispose() {
-    controller.dispose();
+    widget.controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return IntrinsicHeight(
+    return Padding(
+      padding: widget.padding ?? EdgeInsets.zero,
       child: Row(
         children: [
           Flexible(
             child: TextField(
-              controller: controller,
+              controller: widget.controller,
               textAlign: TextAlign.center,
               textInputAction: TextInputAction.search,
               textCapitalization: TextCapitalization.sentences,
@@ -61,27 +66,35 @@ class _SearchBoxState extends State<SearchBox> {
               ),
             ),
           ),
-          InkWell(
-            onTap: () => widget.onSubmitted(controller.text),
-            borderRadius:
-                const BorderRadius.horizontal(right: Radius.circular(16)),
-            child: Ink(
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
-                borderRadius: const BorderRadius.horizontal(
-                  right: Radius.circular(16),
-                ),
-              ),
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                height: double.infinity,
-                child: Icon(
-                  UniconsLine.search,
-                  color: Theme.of(context).colorScheme.onPrimary,
-                ),
-              ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              splashFactory: InkSparkle.splashFactory,
             ),
+            child: const Text('Sparkle!'),
+            onPressed: () {},
           ),
+          // InkWell(
+          //   onTap: () => widget.onSubmitted(widget.controller.text),
+          //   borderRadius: const BorderRadius.horizontal(
+          //     right: Radius.circular(16),
+          //   ),
+          //   child: Ink(
+          //     decoration: BoxDecoration(
+          //       color: Theme.of(context).colorScheme.primary,
+          //       borderRadius: const BorderRadius.horizontal(
+          //         right: Radius.circular(16),
+          //       ),
+          //     ),
+          //     child: Container(
+          //       padding: const EdgeInsets.symmetric(horizontal: 24),
+          //       height: double.infinity,
+          //       child: Icon(
+          //         UniconsLine.search,
+          //         color: Theme.of(context).colorScheme.onPrimary,
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

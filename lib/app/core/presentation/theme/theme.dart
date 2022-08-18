@@ -22,6 +22,7 @@ final theme = ThemeData(
   appBarTheme: const AppBarTheme(
     backgroundColor: Color(0xFF000000),
     centerTitle: true,
+    elevation: 0,
   ),
   fontFamily: 'SourceSansPro',
   textTheme: const TextTheme(
@@ -32,7 +33,7 @@ final theme = ThemeData(
     headline5: TextStyle(color: Color(0xFFFFFEFE), fontWeight: FontWeight.w600),
     headline6: TextStyle(color: Color(0xFFFFFEFE), fontWeight: FontWeight.w600),
     subtitle1: TextStyle(color: Color(0xFFFFFEFE), fontWeight: FontWeight.w600),
-    subtitle2: TextStyle(color: Color(0xFFFFFEFE), fontWeight: FontWeight.w600),
+    subtitle2: TextStyle(color: Color.fromARGB(255, 207, 207, 207)),
     button: TextStyle(color: Color(0xFFFFFEFE), fontWeight: FontWeight.w600),
     caption: TextStyle(color: Color(0xFFFFFEFE), fontWeight: FontWeight.w600),
   ),
