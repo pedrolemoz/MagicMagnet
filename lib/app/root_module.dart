@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'core/presentation/utils/transitions.dart';
-import 'module/initial/initial_module.dart';
+import 'module/home/home_module.dart';
 import 'module/search/search_module.dart';
 import 'module/settings/settings_module.dart';
 
@@ -13,7 +13,7 @@ class RootModule extends Module {
   List<ModularRoute> get routes => [
         ModuleRoute(
           '/',
-          module: InitialModule(),
+          module: HomeModule(),
           transition: TransitionType.custom,
           customTransition: MagicTransitions.moduleTransition,
         ),

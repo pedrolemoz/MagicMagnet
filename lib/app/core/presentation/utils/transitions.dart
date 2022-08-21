@@ -8,7 +8,7 @@ class MagicTransitions {
     transitionBuilder: (context, animation, secondaryAnimation, child) {
       return FadeThroughTransition(
         animation: animation,
-        fillColor: Theme.of(context).colorScheme.background,
+        fillColor: Theme.of(context).colorScheme.surface,
         secondaryAnimation: secondaryAnimation,
         child: child,
       );
@@ -20,7 +20,7 @@ class MagicTransitions {
     transitionBuilder: (context, animation, secondaryAnimation, child) {
       return SharedAxisTransition(
         animation: animation,
-        fillColor: Theme.of(context).colorScheme.background,
+        fillColor: Theme.of(context).colorScheme.surface,
         secondaryAnimation: secondaryAnimation,
         transitionType: SharedAxisTransitionType.horizontal,
         child: child,
