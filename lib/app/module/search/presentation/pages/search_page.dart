@@ -5,7 +5,7 @@ import 'package:magic_magnet_engine/domain/entities/magnet_links.dart';
 import 'package:magic_magnet_engine/domain/parameters/search_parameters.dart';
 
 import '../../../../core/presentation/utils/disable_splash.dart';
-import '../../../initial/presentation/components/search_box.dart';
+
 import '../controller/search_bloc.dart';
 import '../controller/search_events.dart';
 

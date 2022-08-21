@@ -11,7 +11,7 @@ class SettingsModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute(
           '/',
-          child: (context, args) => SettingsPage(),
+          child: (context, args) => const SettingsPage(),
           transition: TransitionType.custom,
           customTransition: MagicTransitions.pageTransition,
         ),
