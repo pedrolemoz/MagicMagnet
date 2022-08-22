@@ -12,6 +12,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final textController = TextEditingController();
+
+  void navigateToResults() => Modular.to.pushNamed(
+        '/search/',
+        arguments: textController.text,
+      );
+
   @override
   Widget build(BuildContext context) {
     return Unfocus(
@@ -31,77 +38,31 @@ class _HomePageState extends State<HomePage> {
         body: Padding(
           padding: const EdgeInsets.all(16),
           child: Center(
-            child: IntrinsicHeight(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Flexible(
-                    child: TextField(
-                      textAlign: TextAlign.center,
-                      showCursor: false,
-                      textInputAction: TextInputAction.search,
-                      textCapitalization: TextCapitalization.sentences,
-                      enableInteractiveSelection: true,
-                      maxLines: 1,
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                            color: Theme.of(context).colorScheme.onSurface,
-                          ),
-                      decoration: InputDecoration(
-                        isDense: true,
-                        filled: true,
-                        hintStyle: Theme.of(context)
-                            .textTheme
-                            .bodyLarge!
-                            .copyWith(
-                              color: Theme.of(context).colorScheme.onSurface,
-                            ),
-                        contentPadding: const EdgeInsets.all(16),
-                        hintText: 'Type something here',
-                        border: const OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(16),
-                            bottomLeft: Radius.circular(16),
-                          ),
-                        ),
-                      ),
-                    ),
+            child: TextField(
+              controller: textController,
+              onSubmitted: (_) => navigateToResults(),
+              textInputAction: TextInputAction.search,
+              textCapitalization: TextCapitalization.sentences,
+              enableInteractiveSelection: true,
+              maxLines: 1,
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Row(
-                      children: [
-                        Text(
-                          'Search',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.onPrimary,
-                              ),
-                        ),
-                        const SizedBox(width: 8),
-                        Icon(
-                          UniconsLine.search,
-                          size: 15,
-                          color: Theme.of(context).colorScheme.onPrimary,
-                        ),
-                      ],
+              decoration: InputDecoration(
+                isDense: true,
+                filled: true,
+                prefixIcon: GestureDetector(
+                  onTap: navigateToResults,
+                  child: const Icon(UniconsLine.search),
+                ),
+                hintStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.primary,
-                      padding: const EdgeInsets.all(16),
-                      shape: const RoundedRectangleBorder(
-                        side: BorderSide.none,
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(16),
-                          bottomRight: Radius.circular(16),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                hintText: 'Search anything here',
+                border: const OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                ),
               ),
             ),
           ),
@@ -138,7 +99,7 @@ class MagicDrawer extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
-                'Magic Magnet 3 (engine 2)',
+                'Magic Magnet 3 beta (engine 2)',
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       color: Theme.of(context).colorScheme.onSurface,
                     ),

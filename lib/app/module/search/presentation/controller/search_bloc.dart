@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:magic_magnet_engine/domain/entities/magnet_links.dart';
+import 'package:magic_magnet_engine/domain/entities/providers.dart';
 import 'package:magic_magnet_engine/domain/errors/global_exceptions.dart';
+import 'package:magic_magnet_engine/domain/parameters/search_parameters.dart';
 import 'package:magic_magnet_engine/domain/usecases/search_for_magnet_links.dart';
 
 import 'search_events.dart';
@@ -23,7 +25,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   ) async {
     emit(SearchingState());
     try {
-      final stream = _searchForMagnetLinks(event.parameters);
+      final parameters = SearchParameters(event.query, [Providers.tpb]);
+      final stream = _searchForMagnetLinks(parameters);
       await emit.forEach<MagnetLink>(
         stream,
         onData: (magnetLink) {
